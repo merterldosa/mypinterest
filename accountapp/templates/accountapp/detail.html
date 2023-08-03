@@ -1,5 +1,3 @@
-<!--pragmatic/accountapp/templates/accountapp/detail.html-->
-<!--닉네임을 바꾸고 싶을 떄 ProfileUpdateView 로 Routing 을 해줄 a 태그 삽입-->
 {% extends 'base.html'%}
 
 {% block content %}
@@ -9,30 +7,45 @@
       <p>
         {{ target_user.date_joined }}
       </p>
-      <!-- 추가 : 프로필 이미지가 보이도록-->
-	  <img src="{{ target_user.profile.image.url }}" alt=""
-         style="height: 12rem; width: 12rem; border-radius: 20rem; margin-bottom: 2rem;">
-
-      {% if target_user.profile %} <!--target_user 의 profile 이 존재한다면 -->
+      {% if target_user.profile %} <!--(1) profile 있고 -->
+      <!--프로필 이미지를 보여주기-->
+      <img src="{{ target_user.profile.image.url }}" alt=""
+           style="height: 12rem; width: 12rem; border-radius: 20rem; margin-bottom: 2rem;">
       <h2 style="font-family: 'NanumSquareB'">
-        {{ target_user.profile.nickname }}  <!--target_user 의 profile 의 nickname 보여주도록-->
-        <!--추가한 부분-->
-        <a href="{% url 'profileapp:update' pk=target_user.profile.pk %}">
-          edit
-        </a>
-        <!------------>
+        <!--nickname 보여주기-->
+        {{ target_user.profile.nickname }}
+          <!-- 추가된 부분 -->
+          {% if target_user == user %} <!--(1-1) target_user == user 라면-->
+          <!--프로필 수정 페이지로 이동할 수 있도록-->
+          <a href="{% url 'profileapp:update' pk=target_user.profile.pk %}">
+            edit
+          </a>
+          {% endif %}
+          <!--------------->
       </h2>
-      {% else %} <!-- 아닌경우 create profile 로 향하는 url 로 -->
-      <a href="{% url 'profileapp:create' %}">   <!--프로필을 만들수 있는 페이지로-->
-        <h2 style="font-family: 'NanumSquareB'">
-          Create Profile
-        </h2>
-      </a>
-      {% endif %}
-
+      <!--대화명을 보여주기-->
       <h5 style="margin-bottom: 3rem;">
-         {{ target_user.profile.message }}
+        {{ target_user.profile.message }}
       </h5>
+
+      {% else %} <!--(2) profile 이 없는데-->
+        <!-- 추가된 부분 -->
+        {% if target_user == user %} <!-- (2-1) target_user == user 이라면-->
+        <!--프로필 생성 페이지로 이동할 수 있도록-->
+        <a href="{% url 'profileapp:create' %}">
+          <h2 style="font-family: 'NanumSquareB'">
+            Create Profile
+          </h2>
+        </a>
+        <!-- (2-2) 단순히 프로필만 없다면-->
+        {% else %}
+        <h2>
+          닉네임 미설정 <!--다음 출력-->
+        </h2>
+        {% endif %}
+        <!--------------->
+
+      {% endif %}
 
       {% if target_user == user %}
       <a href="{% url 'accountapp:update' pk=user.pk%}">
