@@ -6,11 +6,22 @@
   <div>
     <div style="text-align: center; max-width: 500px; margin: 4rem auto;">
       <p>
-        {{ user.date_joined }}
+        {{ target_user.date_joined }}
       </p>
+
+      <!-- 추가 -->
+      {% if target_user.profile %} <!--target_user 의 profile 이 존재한다면 -->
       <h2 style="font-family: 'NanumSquareB'">
-        {{ user.username }}
+        {{ target_user.profile.nickname }}  <!--target_user 의 profile 의 nickname 보여주도록-->
       </h2>
+      {% else %} <!-- 아닌경우 create profile 로 향하는 url 로 -->
+      <a href="{% url 'profileapp:create'  %}">   <!--프로필을 만들수 있는 페이지로-->
+        <h2 style="font-family: 'NanumSquareB'">
+          Create Profile
+        </h2>
+      </a>
+      {% endif %}
+      <!-- 추가 끝 -->
 
       {% if target_user == user %}
       <a href="{% url 'accountapp:update' pk=user.pk%}">
