@@ -1,4 +1,5 @@
 {% extends 'base.html' %} <!-- extends 를 이용하여 base 가져오기 -->
+{% load bootstrap4 %}
 
 {% block content %}
 
@@ -6,11 +7,11 @@
   <div>
     <h4>Login</h4>
   </div>
-  <div>
+  <div style="text-align: center; max-width: 500px; margin: 4rem auto; ">
     <form action="{% url 'accountapp:login' %}" method="post">
       {% csrf_token %}
-      {{ form }}
-      <input type="submit" class="btn btn-primary">
+      {% bootstrap_form form %}
+      <input type="submit" class="btn btn-dark rounded-pill col-6 mt-3">
     </form>
   </div>
 </div>
