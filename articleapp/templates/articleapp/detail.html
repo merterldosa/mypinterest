@@ -1,5 +1,5 @@
 <!--articleapp/templates/articleapp/detail.html-->
-{% extends 'base.html'%}
+<!--{% extends 'base.html'%}-->
 
 {% block content %}
 
@@ -24,26 +24,29 @@
       <p>
         {{ target_article.content }}
       </p>
-
-      <!-- 인증 과정 포함-->
-      {% if target_article.writer == user %}
-      <!-- 게시글 업데이트-->
-      <a href="{% url 'articleapp:update' pk=target_article.pk %}"
-      class="btn btn-primary rounded-pii col-3">
-        Update
-      </a>
-
-      <!-- 게시글 삭제 -->
-      <a href="{% url 'articleapp:delete' pk=target_article.pk %}"
-      class="btn btn-danger rounded-pii col-3">
-        Delete
-      </a>
-      {% endif %}
-      <hr> <!-- 밑에 코멘트가 들어갈 공간 분리-->
-
-      {% include 'commentapp/create.html' with article=target_article %}
-
     </div>
-  </div>
+    <div>
+    <!-- 인증 과정 포함-->
+    {% if target_article.writer == user %}
+    <!-- 게시글 업데이트-->
+    <a href="{% url 'articleapp:update' pk=target_article.pk %}"
+    class="btn btn-primary rounded-pii col-3">
+      Update
+    </a>
+    <!-- 게시글 삭제 -->
+    <a href="{% url 'articleapp:delete' pk=target_article.pk %}"
+    class="btn btn-danger rounded-pii col-3">
+      Delete
+    </a>
+    {% endif %}
+    </div>
 
+    <hr> <!-- 밑에 코멘트가 들어갈 공간 분리-->
+
+    {% for comment in target_article.comment.all %}
+     {% include 'commentapp/detail.html' with comment=comment %}
+    {% endfor %}
+
+    {% include 'commentapp/create.html' with article=target_article %}
+</div>
 {% endblock %}

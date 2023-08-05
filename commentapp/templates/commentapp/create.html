@@ -8,17 +8,20 @@
       <h4>Comment Create</h4>
     </div>
     <form action="{% url 'commentapp:create' %}" method="post">  <!--url 일원화, post 방식 으로 전송 -->
-      {% csrf_token %}
-      {% bootstrap_form form %}
+    {% csrf_token %}
+    {% bootstrap_form form %}
 
-      {% if user.is_authenticated %}
+    {% if user.is_authenticated %}
       <input type="submit" class="btn btn-dark rounded-pill col-6 mt-3">
-      {% else %}
+    {% else %}
       <a href="{% url 'accountapp:login' %}?next={{ request.path }}"
         class="btn btn-dark rounded-pill col-6 mt-3">
         Login
       </a>
-      {% endif %}
+    {% endif %}
+
+      <input type="hidden" name="article_pk" value="{{ article.pk }}">
+
     </form>
   </div>
 

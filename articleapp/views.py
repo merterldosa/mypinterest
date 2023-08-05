@@ -13,6 +13,8 @@ from articleapp.models import Article
 
 
 # Create your views here.
+from commentapp.forms import CommentCreationForm
+
 @method_decorator(login_required, 'get')
 @method_decorator(login_required, 'post')
 class ArticleCreateView(CreateView):
@@ -32,7 +34,7 @@ class ArticleCreateView(CreateView):
 
 class ArticleDetailView(DetailView, FormMixin):
     model = Article
-    form_class = ArticleCreationForm
+    form_class = CommentCreationForm
     context_object_name = 'target_article'
     template_name = 'articleapp/detail.html'
 
