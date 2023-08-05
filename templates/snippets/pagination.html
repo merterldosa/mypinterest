@@ -1,20 +1,23 @@
-<!--templates/snippets/pagination.html-->
-<div style="text-align: center; margin:1rem 0;">
+<!-- /pragmatic/templates/snippets/pagination.html 수정-->
+<!-- {% url 'articleapp:list' %} 부분을 제거하여 모든 app 에서 사용 가능하도록 -->
+<!-- 어떤 페이지에서든 pagination 을 불러오더라도 슬래시(/) 앞에 있는 url 은 그대로 있고 get 파라미터만 바뀌어서 온다.-->
+
+<div style="text-align: center; margin: 1rem 0;">
   {% if page_obj.has_previous %} <!--현재 페이지 page_obj 객체가 이전 페이지를 가지고 있다면-->
   <!--get 방식으로 이전 페이지의 번호를 넘겨주면서 이전 페이지로 넘어가는 링크를 만들어줌-->
-  <a href="{% url 'articleapp:list' %}?page={{ page_obj.previous_page_number }}"
+  <a href="?page={{ page_obj.previous_page_number }}"
     class="btn btn-secondary rounded-pill">
       {{ page_obj.previous_page_number }}
   </a>
   {% endif %}
   <!-- 현재 있는 페이지 -->
-  <a href="{% url 'articleapp:list' %}?page={{ page_obj.number }}"
+  <a href="?page={{ page_obj.number }}"
     class="btn btn-secondary rounded-pill active">
       {{ page_obj.number }}
   </a>
   {% if page_obj.has_next %} <!-- 다음 페이지가 있다면 -->
   <!-- 다음페이지로 향하는 링크 만들어주기-->
-  <a href="{% url 'articleapp:list' %}?page={{ page_obj.next_page_number }}"
+  <a href="?page={{ page_obj.next_page_number }}"
     class="btn btn-secondary rounded-pill active">
       {{ page_obj.next_page_number }}
   </a>

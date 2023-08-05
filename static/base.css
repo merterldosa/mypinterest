@@ -1,21 +1,41 @@
-.pragmatic-logo {
-    text-align: center;
-    margin: 2rem 0;
-    font-family: 'Noto Sans KR';
+.pragmatic_logo {
+    margin-top: 1rem;
+    font-family: 'Lobster', cursive;
 }
 
-.pragmatic-footer {
-    text-align: center;
+.pragmatic_footer_button {
+    font-size: .10rem;
+}
+
+.pragmatic_footer{
+    text-align:center;
     margin-top: 2rem;
 }
 
-.pragmatic-header {
-    text-align: center;
+.pragmatic_header {
+    text-align:center;
     margin: 2rem 0;
 }
 
-@media screen and (max-width: 500px) { /*스크린에 사이즈가 500px 이하로 떨어지면 이 안에 있는 css 태그들이 적용이 된다*/
+@media screen and (max-width:500px) {
     html {
         font-size: 13px;
     }
+}
+
+a {
+    color: black;
+}
+
+a:hover {
+    color: black;
+    text-decoration: none;
+}
+
+.pragmatic_header_nav {
+    margin: 0 0.5rem;
+}
+
+.pragmatic_header_navbar {
+    margin: 1rem 0;
 }
