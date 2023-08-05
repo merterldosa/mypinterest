@@ -13,3 +13,9 @@
     text-align: center;
     margin: 2rem 0;
 }
+
+@media screen and (max-width: 500px) { /*스크린에 사이즈가 500px 이하로 떨어지면 이 안에 있는 css 태그들이 적용이 된다*/
+    html {
+        font-size: 13px;
+    }
+}

@@ -301,4 +301,12 @@ for (let i=0; i<masonrys.length; i++){
     }, false);
 }
 
+let magicGrid = new MagicGrid({
+    container: '.container',
+    animate: true,
+    gutter: 12, //30->12
+    static: true,
+    useMin: true
+});
+
 magicGrid.listen();
