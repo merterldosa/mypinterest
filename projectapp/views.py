@@ -38,6 +38,8 @@ class ProjectDetailView(DetailView, MultipleObjectMixin):
         if user.is_authenticated: # 유저가 접속이 되있다면, usr 와 project 가 각각 user, project 인 구독정보를 찾고
             subscription = Subscription.objects.filter(user=user, project=project)
         # 유저가 접속되어있지 않는다면 구독 버튼 자체가 없기 떄문에 else 구문은 생략
+        else:
+            subscription = None
 
         object_list = Article.objects.filter(project=self.get_object())
         # 최종적으로 템플릿으로 넘어갈때는 context_data 안에다가 구독 정보를 우리가 찾은 'subsriptiom' 으로 대체
