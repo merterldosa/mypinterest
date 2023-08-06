@@ -17,8 +17,10 @@
           <!-- 추가된 부분 -->
           {% if target_user == user %} <!--(1-1) target_user == user 라면-->
           <!--프로필 수정 페이지로 이동할 수 있도록-->
-          <a href="{% url 'profileapp:update' pk=target_user.profile.pk %}">
-            edit
+          <a href="{% url 'profileapp:update' pk=target_user.profile.pk %}" class="material-icons">
+            <div>
+              edit
+            </div>
           </a>
           {% endif %}
           <!--------------->

@@ -21,10 +21,11 @@
               src=" {{ target_article.image.url }}" alt="">
 
       <!-- 게시글의 내용 -->
-      <p>
-        {{ target_article.content }}
-      </p>
-    </div>
+      <div style= "text-align: left;">
+        <p>
+          {{ target_article.content | safe }}
+        </p>
+      </div>
     <div>
     <!-- 인증 과정 포함-->
     {% if target_article.writer == user %}
