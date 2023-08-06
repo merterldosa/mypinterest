@@ -1,40 +1,12 @@
-{% extends 'base.html' %}
-{% load static %}
-
-{% block content %}
-<style>
-
-.container div {
-  width: 250px;
-  background-color: antiquewhite;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-radius: 1rem;
-}
-
-.container img {
-  width: 100%;
-  border-radius: 1rem;
-}
-
-.container {
-    padding: 0
-    margin: 0, auto;
-}
-
-.container a {
-    width: 45%; /*모바일에서는 사이즈가 45% 를 차지한다.*/
-    max-width: 250px;  /*데스크탑에서의 최대 너비가 250px*/
-}
-</style>
+<!--{% load static %}-->
+<!-- list_fragment.html 불러지나.-->
 
 {% if article_list %}
     <div class="container">
         {% for article in article_list %}
-        <a href=" {% url 'articleapp:detail' pk=article.pk %}">
+            <a href=" {% url 'articleapp:detail' pk=article.pk %}">
             {% include 'snippets/card.html' with article=article %}
-        </a>
+            </a>
         {% endfor %}
     </div>
     <script src="{% static 'js/magicgrid.js' %}"></script> <!--js 를 컨테이너 내부로 이동시키기-->
@@ -51,5 +23,3 @@
         Create Article
     </a>
 </div>
-
-{% endblock %}
