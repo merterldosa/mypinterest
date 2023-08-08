@@ -1,7 +1,4 @@
-from msilib.schema import ListView
-
 from django.contrib.auth.decorators import login_required
-from django.shortcuts import render
 from django.urls import reverse, reverse_lazy
 from django.utils.decorators import method_decorator
 from django.views.generic import CreateView, DetailView, UpdateView, DeleteView
@@ -10,8 +7,6 @@ from django.views.generic.list import ListView
 from articleapp.decorators import article_ownership_required
 from articleapp.forms import ArticleCreationForm
 from articleapp.models import Article
-
-
 # Create your views here.
 from commentapp.forms import CommentCreationForm
 
