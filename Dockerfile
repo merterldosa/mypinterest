@@ -18,4 +18,4 @@ RUN echo yes | python manage.py collectstatic
 
 EXPOSE 8000
 
-CMD ["gunicorn", "pragmatic.wsgi", "--bind", "0.0.0.0:8000"]
+CMD ["gunicorn", "mypinterest.wsgi", "--bind", "0.0.0.0:8000"]
