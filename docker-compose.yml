@@ -1,11 +1,13 @@
 version: "3.7"
 services:
   nginx:
-    image: nginx:1.22.0
+    image: nginx:1.22.1
     networks:
       - network
     volumes:
-      - C:\projects\venv_pint\mypinterest\nginx.conf:/etc/nginx/nginx.conf #nginx.conf bind volume
+#      - /home/mypinterest/nginx.conf:/etc/nginx/nginx.conf
+      - C:\projects\venv_pint\mypinterest\nginx.conf:/etc/nginx/nginx.conf
+      #nginx.conf bind volume
       # volume 이름:node상 디렉토리 위치
       - static-volume:/data/static
       - media-volume:/data/media
@@ -13,7 +15,7 @@ services:
       - 80:80
 
   django_container_gunicorn: #network로 묶이기 때문에 name-space 정보로 넣어줘야한다. django로 넣으면 안된다.
-    image: django_test_imgage:5
+    image: django_test_image:5
     networks:
       - network
     volumes:
@@ -35,10 +37,10 @@ services:
     environment:
       MYSQL_DATABASE: django
       MYSQL_USER: django
-      #MYSQL_PASSWORD: password1234
-      #MYSQL_ROOT_PASSWORD: password1234
-      MYSQL_PASSWORD: /run/secrets/MYSQL_PASSWORD
-      MYSQL_ROOT_PASSWORD: /run/secrets/MYSQL_ROOT_PASSWORD
+#      MYSQL_PASSWORD: password1234
+#      MYSQL_ROOT_PASSWORD: password1234
+      MYSQL_PASSWORD_FILE: /run/secrets/MYSQL_PASSWORD
+      MYSQL_ROOT_PASSWORD_FILE: /run/secrets/MYSQL_ROOT_PASSWORD
 
 #상기 선언한 network와 volume들을 변수처럼? 명기
 networks:
@@ -48,7 +50,6 @@ volumes:
   static-volume:
   media-volume:
   maria-database:
-
 
 secrets:
   DJANGO_SECRET_KEY:
